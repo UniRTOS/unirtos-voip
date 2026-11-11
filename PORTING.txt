@@ -1,0 +1,36 @@
+VoIP source provenance / adaptation boundary
+
+Original: ASR/3601/dev/temp/mike/R06_VOIP_1331597/quectel/voip.
+Confirmed by the user on 2026-11-03. No network download or replacement SIP stack.
+The earlier UniRTOS port was used as an adaptation reference.
+source_manifest.json records 225 original paths relative to that source root,
+target paths and original SHA256 values (not current adapted-file hashes).
+
+vendor/app: ASR call management and SIP/SDP/RTP integration.
+vendor/osip: original oSIP/eXosip sources, with UniRTOS thread/socket/time adapters.
+vendor/ortp: original oRTP and G.711 codec sources, with UniRTOS platform adapters.
+port/qcm_voip_port: RTOS primitives, clocks, thread join, IPv4 and platform logging.
+port/qcm_voip_pcm: independent capture/playback streams, serialized stream lifetime.
+voip_pcm_close preserves ownership on failure; voip_pcm_dispose consumes ownership
+and retains failed driver closes for recovery before a later open. New streams are
+blocked while recovery still fails, so legacy media callbacks cannot lose handles.
+port/qcm_voip_resample: 63-tap Q15 low-pass FIR; board PCM 16k <-> PCMA network 8k.
+port/qcm_voip_sdp: optional RTCP defaults, media/session direction and static PCMA.
+qcm_voip.c/public: bounded one-call API; caller serializes blocking control operations.
+
+Only PCMA/8000/PT8 voice is exposed by this test port. Telephone-event is retained
+from the source but this demo does not expose a DTMF keypad command.
+The companion unirtos-voip-demos package owns account macros and board GPIO policy.
+Applications select this component through env_config.json libraries.list.
+
+Files under vendor preserve the original copyright notices.
+Historical diffs, build packages and host regression scripts are archived locally;
+they are not required by the firmware build and are not part of this source delivery.
+Current configuration, board/PC setup and manual checks: unirtos-voip-demos/README.md.
+
+Call-only package: version 1.0.1.
+Removed standalone record/playback, tone and raw PCM test entry points and
+sample statistics. Retained the call PCM ownership/recovery guards, gain,
+resampling and G.711 media path. No SIP/RTP state machine changes.
+The publish branch is a source snapshot; earlier development history and
+standalone test assets stay in the local archive, outside this branch.

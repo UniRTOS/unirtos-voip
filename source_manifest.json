@@ -1,0 +1,1127 @@
+[
+  {
+    "source": "app/qosa_voip.c",
+    "target": "components/qcm_voip/vendor/app/qosa_voip.c",
+    "sha256": "5c78dcc56c9f16633eb319b99200b21bb7c299621daca90abd02ad54407d2cb2"
+  },
+  {
+    "source": "app/qosa_voip.h",
+    "target": "components/qcm_voip/vendor/app/qosa_voip.h",
+    "sha256": "f4b269e6d56fcaad151350c1fdd95abce467b53e3f18f9d230d99878df4c4f95"
+  },
+  {
+    "source": "ortp/inc/ortp/b64.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/b64.h",
+    "sha256": "5e8bcdf97e644ba5c556350b4d84327fab697bcaeee438802c21dd5db24e3ecf"
+  },
+  {
+    "source": "ortp/inc/ortp/event.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/event.h",
+    "sha256": "017b3f36bc2a5d4a57cf5276508d535e3d92c8ecb272d56846110312a37e769e"
+  },
+  {
+    "source": "ortp/inc/ortp/logging.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/logging.h",
+    "sha256": "a9e7e2f11f9caab34ec724d62c9337d0ab66b906cc9d1a6933bd37af70357344"
+  },
+  {
+    "source": "ortp/inc/ortp/nack.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/nack.h",
+    "sha256": "83f01fc1cb15c162768d24cf3fc787e93c36ca2eb80e92f9cdd724c9f52e66db"
+  },
+  {
+    "source": "ortp/inc/ortp/ortp.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/ortp.h",
+    "sha256": "1a1b3e547f22ab4bfd02ccf1e0ea15133c28f1ce496e31e54feb51a8e4ebf60a"
+  },
+  {
+    "source": "ortp/inc/ortp/payloadtype.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/payloadtype.h",
+    "sha256": "e8c506cbd37ffe9540c1d04cd9fc6ac3b3808619f4cc6c1c3708ac1a93472e6f"
+  },
+  {
+    "source": "ortp/inc/ortp/port.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/port.h",
+    "sha256": "e5c726cbe06f0c1e0cc4677bcc307b14565b14d41d3c7971df4282fa67f4592d"
+  },
+  {
+    "source": "ortp/inc/ortp/rtcp.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/rtcp.h",
+    "sha256": "596c9892484bd7cc9f829494ed859f2f50c016d66ad8a5aa8bcfa12803df42fb"
+  },
+  {
+    "source": "ortp/inc/ortp/rtp.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/rtp.h",
+    "sha256": "e804dca28d4da9ec2cc91330cab0de2d94ab63d03acdf85ada5e9f4d65ed08ae"
+  },
+  {
+    "source": "ortp/inc/ortp/rtpprofile.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/rtpprofile.h",
+    "sha256": "b589c32eec5b38d6bdb621c6c6564f8773ed9319b0a3968e0d4d39402e3222f1"
+  },
+  {
+    "source": "ortp/inc/ortp/rtpsession.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/rtpsession.h",
+    "sha256": "cd74dc777c9be0276c53e2d9b8f51be9760db5524d205936286f5a18c7874f8a"
+  },
+  {
+    "source": "ortp/inc/ortp/rtpsignaltable.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/rtpsignaltable.h",
+    "sha256": "5622c6850421e83817a8ac9e7b4bb8fbc9380a5df46ade2096718fa216fa1253"
+  },
+  {
+    "source": "ortp/inc/ortp/sessionset.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/sessionset.h",
+    "sha256": "5a85344fdbd351dc2bfda52de8b74bba4721e650a0e11df50efb85ee0c006c83"
+  },
+  {
+    "source": "ortp/inc/ortp/str_utils.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/str_utils.h",
+    "sha256": "a5fff9d477f32ff6b6f51b38f1252aaacdc140079ffb0da64bef0b6b87b9da5a"
+  },
+  {
+    "source": "ortp/inc/ortp/stun.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/stun.h",
+    "sha256": "747fb549353b66348880806290974475490599ca0df8b8fc9a728d0dea8116ea"
+  },
+  {
+    "source": "ortp/inc/ortp/stun_udp.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/stun_udp.h",
+    "sha256": "2ac83f4b93141b61e7684a6d09a2d777fce7f56db6d9f0f625994fd76301ac63"
+  },
+  {
+    "source": "ortp/inc/ortp/telephonyevents.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/telephonyevents.h",
+    "sha256": "94efe68458984229f84e2e6f014fc8bae16a626e03f0b2a9e3c132109164ffff"
+  },
+  {
+    "source": "ortp/inc/ortp/utils.h",
+    "target": "components/qcm_voip/vendor/ortp/inc/ortp/utils.h",
+    "sha256": "855b2c6e4a2d9d2b5c00f86c9e056b6497e7ca04991fe73462b46402988db470"
+  },
+  {
+    "source": "ortp/mpc/fcntl.h",
+    "target": "components/qcm_voip/vendor/ortp/mpc/fcntl.h",
+    "sha256": "7deb851ec5e225c4b16e99e76bbd19912da8072f7e88b24f66d1a6b7a8761fe7"
+  },
+  {
+    "source": "ortp/mpc/ortp-config.h",
+    "target": "components/qcm_voip/vendor/ortp/mpc/ortp-config.h",
+    "sha256": "d3012c81eed34612839cc376466c6996c424c1446d9bf85da73ac74c0773ebcf"
+  },
+  {
+    "source": "ortp/mpc/ortp_charconv.h",
+    "target": "components/qcm_voip/vendor/ortp/mpc/ortp_charconv.h",
+    "sha256": "6a1b49ee3b2f4dabd5db53522f6f1b73c50952cae64f461814b68dc5563d9d71"
+  },
+  {
+    "source": "ortp/mpc/ortp_def.h",
+    "target": "components/qcm_voip/vendor/ortp/mpc/ortp_def.h",
+    "sha256": "ccc845ede9064b746f9af2553821996004743803cab3499f79ec8958d79752b5"
+  },
+  {
+    "source": "ortp/mpc/ortp_list.c",
+    "target": "components/qcm_voip/vendor/ortp/mpc/ortp_list.c",
+    "sha256": "7d67c8133a28917bbe77173a0ab3a8355be3b4d4898b9f32d72f7586da49c8e1"
+  },
+  {
+    "source": "ortp/mpc/ortp_list.h",
+    "target": "components/qcm_voip/vendor/ortp/mpc/ortp_list.h",
+    "sha256": "8ea965c471891165f70e3ae794592b767ecb0b6ababbf43b631855be7a084ad8"
+  },
+  {
+    "source": "ortp/mpc/ortp_logging.h",
+    "target": "components/qcm_voip/vendor/ortp/mpc/ortp_logging.h",
+    "sha256": "9bf7b24087bf51d15b421284b3b89fae1e6b7ceb516dffbcf243f1479792388b"
+  },
+  {
+    "source": "ortp/mpc/ortp_port.c",
+    "target": "components/qcm_voip/vendor/ortp/mpc/ortp_port.c",
+    "sha256": "d573ae7762df6bfdf8a3ade5911ded524681422b489b917754617b5b0ff4fef5"
+  },
+  {
+    "source": "ortp/mpc/ortp_port.h",
+    "target": "components/qcm_voip/vendor/ortp/mpc/ortp_port.h",
+    "sha256": "89b2172beaa69e9957997a6f35e5369a1af4739a9225deeebc05da986bb64410"
+  },
+  {
+    "source": "ortp/mpc/ortp_posix.c",
+    "target": "components/qcm_voip/vendor/ortp/mpc/ortp_posix.c",
+    "sha256": "b91427663f18aeec077b210fa5d48cefbc77be41248851a3a87f3bdffb1f0ce3"
+  },
+  {
+    "source": "ortp/mpc/ortp_posix.h",
+    "target": "components/qcm_voip/vendor/ortp/mpc/ortp_posix.h",
+    "sha256": "d6965c81be04e5a81c3a2eccb78f47c7d6a1c08c9be879e13901cdbc2e389695"
+  },
+  {
+    "source": "ortp/mpc/ortp_vconnect.h",
+    "target": "components/qcm_voip/vendor/ortp/mpc/ortp_vconnect.h",
+    "sha256": "c45ef13dfcffbdcd475db45d899efab6e9b62de11c0e4080a8b5dd5af9f9ccb0"
+  },
+  {
+    "source": "ortp/mpc/rtp_g711.c",
+    "target": "components/qcm_voip/vendor/ortp/mpc/rtp_g711.c",
+    "sha256": "0f2fdbea1e9c6996a3b3e1dafce8170edf53035433bcd7fed4bc5a5e6daf0ecb"
+  },
+  {
+    "source": "ortp/mpc/rtp_g711.h",
+    "target": "components/qcm_voip/vendor/ortp/mpc/rtp_g711.h",
+    "sha256": "3079671604a1423951c01454b818fcf1882d80167baafef9fd113b614487f783"
+  },
+  {
+    "source": "ortp/src/avprofile.c",
+    "target": "components/qcm_voip/vendor/ortp/src/avprofile.c",
+    "sha256": "acfd84d5352aa9054fed3e547c6378bcaa925ddf96990ca00825e333050e6c3a"
+  },
+  {
+    "source": "ortp/src/b64.c",
+    "target": "components/qcm_voip/vendor/ortp/src/b64.c",
+    "sha256": "22c558d4fd45cb23c749b526ad11001bd52a1430126986743bb7ce0df265f2f3"
+  },
+  {
+    "source": "ortp/src/congestiondetector.c",
+    "target": "components/qcm_voip/vendor/ortp/src/congestiondetector.c",
+    "sha256": "edc2983f86f03729c97a29a0740d9b4d91389958dcf50122264043af7c0b9f23"
+  },
+  {
+    "source": "ortp/src/congestiondetector.h",
+    "target": "components/qcm_voip/vendor/ortp/src/congestiondetector.h",
+    "sha256": "e85f57a73ce689ac44a1726c4c3f9b77a71113d528f82181753c5ff1155887e1"
+  },
+  {
+    "source": "ortp/src/event.c",
+    "target": "components/qcm_voip/vendor/ortp/src/event.c",
+    "sha256": "cc8428e0eae01db6c833c3fcb157583c524bf2efef26bb595bba1c2f59b26bc0"
+  },
+  {
+    "source": "ortp/src/extremum.c",
+    "target": "components/qcm_voip/vendor/ortp/src/extremum.c",
+    "sha256": "ca852308b8497303fe0726d3f8f04fecbee0fe4287c60444a64ddd3118b9f103"
+  },
+  {
+    "source": "ortp/src/jitterctl.c",
+    "target": "components/qcm_voip/vendor/ortp/src/jitterctl.c",
+    "sha256": "bbb25b9e20a2b4b6d830bb5ffee660da5c9efb9a1e07c86130252dd53f5bf13b"
+  },
+  {
+    "source": "ortp/src/jitterctl.h",
+    "target": "components/qcm_voip/vendor/ortp/src/jitterctl.h",
+    "sha256": "595a728ec28ea8760fcad900c7d554d479c0e8f58336a88ccd4c437a07ff1213"
+  },
+  {
+    "source": "ortp/src/kalmanrls.c",
+    "target": "components/qcm_voip/vendor/ortp/src/kalmanrls.c",
+    "sha256": "132f3b35c7d155c219ca95251a7baa545cfc5cc92c5b64176ebf2e893bbc822e"
+  },
+  {
+    "source": "ortp/src/logging.c",
+    "target": "components/qcm_voip/vendor/ortp/src/logging.c",
+    "sha256": "65d5f5ece6250f4f24f1b9ab820564e1ed302aaa37d01897856990e3d80dd9b2"
+  },
+  {
+    "source": "ortp/src/nack.c",
+    "target": "components/qcm_voip/vendor/ortp/src/nack.c",
+    "sha256": "3074bda727832d89b24ea19dcb250ed01aa6bc75b0322df7263b23d7afe5afba"
+  },
+  {
+    "source": "ortp/src/netsim.c",
+    "target": "components/qcm_voip/vendor/ortp/src/netsim.c",
+    "sha256": "8260fe2b59fcec85bd112a06a786be0203e7a884e8fc2a096c5775acfb949f31"
+  },
+  {
+    "source": "ortp/src/ortp.c",
+    "target": "components/qcm_voip/vendor/ortp/src/ortp.c",
+    "sha256": "44a35cbce55b5f8f936dc2b802160c98e2d5191e5594f44a90d7d24d3e85f867"
+  },
+  {
+    "source": "ortp/src/payloadtype.c",
+    "target": "components/qcm_voip/vendor/ortp/src/payloadtype.c",
+    "sha256": "d4b73404f51181bc7e3b2998f8559cf9f22a4a7d6c6361b84442fe0fc3f038b2"
+  },
+  {
+    "source": "ortp/src/port.c",
+    "target": "components/qcm_voip/vendor/ortp/src/port.c",
+    "sha256": "9c031de310c165b466eb9d3ac5044a53323f9d9287011686f284f8ab13cd35d4"
+  },
+  {
+    "source": "ortp/src/posixtimer.c",
+    "target": "components/qcm_voip/vendor/ortp/src/posixtimer.c",
+    "sha256": "d5cdb2cf9193a172844e478488e9528cd498435a5e8b6a4bc3f3d063dc2b66f3"
+  },
+  {
+    "source": "ortp/src/rtcp.c",
+    "target": "components/qcm_voip/vendor/ortp/src/rtcp.c",
+    "sha256": "6551767e72373d392223d0065dfaaa24dcf34f33c3a53a1f17ea2cf811280bb0"
+  },
+  {
+    "source": "ortp/src/rtcp_fb.c",
+    "target": "components/qcm_voip/vendor/ortp/src/rtcp_fb.c",
+    "sha256": "fabd669069f5aa3721244f5e8e9347fd1c638af4d17254ea5e1f22d095d0e935"
+  },
+  {
+    "source": "ortp/src/rtcp_xr.c",
+    "target": "components/qcm_voip/vendor/ortp/src/rtcp_xr.c",
+    "sha256": "e09346ed75dff890809791d229dc49f9988ed066e0b80d1cc16c133e81de362e"
+  },
+  {
+    "source": "ortp/src/rtcpparse.c",
+    "target": "components/qcm_voip/vendor/ortp/src/rtcpparse.c",
+    "sha256": "62e75da4196da24d52fcc5e940bb6927167a1e69ddeadda4c3d5a6b5236eb7c5"
+  },
+  {
+    "source": "ortp/src/rtpbundle.h",
+    "target": "components/qcm_voip/vendor/ortp/src/rtpbundle.h",
+    "sha256": "5289d82ba96a13df13459c335903fead7e8b16a8d896ca11277b49f6ce8a658d"
+  },
+  {
+    "source": "ortp/src/rtpparse.c",
+    "target": "components/qcm_voip/vendor/ortp/src/rtpparse.c",
+    "sha256": "665bcb5616a188cfaadf0ec6d0f1c297b345776557ea0537fdef04bc3540fdf9"
+  },
+  {
+    "source": "ortp/src/rtpprofile.c",
+    "target": "components/qcm_voip/vendor/ortp/src/rtpprofile.c",
+    "sha256": "5af36640d8fd3ec475f30f9f326c44d399debd978c1d808796db71d89562822d"
+  },
+  {
+    "source": "ortp/src/rtpsession.c",
+    "target": "components/qcm_voip/vendor/ortp/src/rtpsession.c",
+    "sha256": "2be6fda1324863e16c2b1a3ee1224808afd116b84c0c41469f06617ee8e26e68"
+  },
+  {
+    "source": "ortp/src/rtpsession_inet.c",
+    "target": "components/qcm_voip/vendor/ortp/src/rtpsession_inet.c",
+    "sha256": "adc72fe5198d40ca5999e7da5836958bb515b4861c9ac28ac8e5e67520a1875d"
+  },
+  {
+    "source": "ortp/src/rtpsession_priv.h",
+    "target": "components/qcm_voip/vendor/ortp/src/rtpsession_priv.h",
+    "sha256": "56f7ea1a70e51ccf72ca3b9699088efa7fbb29e5708e4524a189e3fd16c35ca5"
+  },
+  {
+    "source": "ortp/src/rtpsignaltable.c",
+    "target": "components/qcm_voip/vendor/ortp/src/rtpsignaltable.c",
+    "sha256": "d89beda2521fb17dfa7459dd6d1c1e74a9a98e9ce4bdf3a6e4034f05ea3b0f40"
+  },
+  {
+    "source": "ortp/src/rtptimer.c",
+    "target": "components/qcm_voip/vendor/ortp/src/rtptimer.c",
+    "sha256": "5099b69b3a3eefe8f125cbf36958dcb98b243850fdcbfdf1899c11388a4af191"
+  },
+  {
+    "source": "ortp/src/rtptimer.h",
+    "target": "components/qcm_voip/vendor/ortp/src/rtptimer.h",
+    "sha256": "2ace5be4810450d41176864614a36eded2b2e52ef655307d1f74482f4ead0f90"
+  },
+  {
+    "source": "ortp/src/scheduler.c",
+    "target": "components/qcm_voip/vendor/ortp/src/scheduler.c",
+    "sha256": "cba00ebea6c92b3128fd9710000451bc8d2b286e9984ee6b8aa30686322c3572"
+  },
+  {
+    "source": "ortp/src/scheduler.h",
+    "target": "components/qcm_voip/vendor/ortp/src/scheduler.h",
+    "sha256": "7e52b8772c17f1294772760f1ad89b94e873611191a056e20a25dda8f8aa9b01"
+  },
+  {
+    "source": "ortp/src/sessionset.c",
+    "target": "components/qcm_voip/vendor/ortp/src/sessionset.c",
+    "sha256": "8082a0ec90bcd4ed8adcd577c54b90e8e6fa02e77f21eea7413b94b0502aac96"
+  },
+  {
+    "source": "ortp/src/str_utils.c",
+    "target": "components/qcm_voip/vendor/ortp/src/str_utils.c",
+    "sha256": "293c6a6b54fe279d35433655df420e34b73931df52be0cba7407730e63949004"
+  },
+  {
+    "source": "ortp/src/telephonyevents.c",
+    "target": "components/qcm_voip/vendor/ortp/src/telephonyevents.c",
+    "sha256": "2a486ddd58011627f9694a9182cb99622bce0b1300283547850867cc93636c93"
+  },
+  {
+    "source": "ortp/src/utils.c",
+    "target": "components/qcm_voip/vendor/ortp/src/utils.c",
+    "sha256": "45a7174028271b10d9cc8e0743ce9a1f40c3440ad2e2f9299783b910e365b060"
+  },
+  {
+    "source": "ortp/src/utils.h",
+    "target": "components/qcm_voip/vendor/ortp/src/utils.h",
+    "sha256": "bf3edf6cb50884c7d2f306ddc9705bb1ddae2a9ee63feee24483a6d98baba6c7"
+  },
+  {
+    "source": "ortp/src/videobandwidthestimator.c",
+    "target": "components/qcm_voip/vendor/ortp/src/videobandwidthestimator.c",
+    "sha256": "0f2a5196599e496d78b29a537d4a626407c29852ae61335d1155fcd5a3164da2"
+  },
+  {
+    "source": "ortp/src/videobandwidthestimator.h",
+    "target": "components/qcm_voip/vendor/ortp/src/videobandwidthestimator.h",
+    "sha256": "3075e35486b347710ad244f3fbde58866bd45475b8c4fbec3c4ea084bc6ef790"
+  },
+  {
+    "source": "ortp/src/winrttimer.h",
+    "target": "components/qcm_voip/vendor/ortp/src/winrttimer.h",
+    "sha256": "f6482df3aaf2f4e95d157411a550a4c484a651700220eb4fbd31f731981828a2"
+  },
+  {
+    "source": "osip/exosip/COPYING",
+    "target": "components/qcm_voip/vendor/osip/exosip/COPYING",
+    "sha256": "32b1062f7da84967e7019d01ab805935caa7ab7321a7ced0e30ebe75e5df1670"
+  },
+  {
+    "source": "osip/exosip/include/eXosip2/eX_call.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/include/eXosip2/eX_call.h",
+    "sha256": "d049206f4e5c0918c206af0a28224280e2eb93460f2c1ec21c782e65c2599a9e"
+  },
+  {
+    "source": "osip/exosip/include/eXosip2/eX_message.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/include/eXosip2/eX_message.h",
+    "sha256": "296c95744b421fecece55343d35f2e3881fd41efb523459934173fc09c4b906f"
+  },
+  {
+    "source": "osip/exosip/include/eXosip2/eX_options.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/include/eXosip2/eX_options.h",
+    "sha256": "d0e45345f472fcfeaa817ecb9b2dddbdd860cbfbbe513fb35e8a97fa9197ae2e"
+  },
+  {
+    "source": "osip/exosip/include/eXosip2/eX_publish.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/include/eXosip2/eX_publish.h",
+    "sha256": "e51ff8158a8069b619dc488e99eff8e6a9140fd8a75b9bed217166cf3b3f53a6"
+  },
+  {
+    "source": "osip/exosip/include/eXosip2/eX_register.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/include/eXosip2/eX_register.h",
+    "sha256": "66a14b068702e6b31cf6eb5871ee44fa8ed32d299b42ad5fdf9040bbb2fa40b5"
+  },
+  {
+    "source": "osip/exosip/include/eXosip2/eX_setup.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/include/eXosip2/eX_setup.h",
+    "sha256": "8d84e6907dd518cf448055f00fb8ba244ad97ed2d61c62060fc40ded0577cd9e"
+  },
+  {
+    "source": "osip/exosip/include/eXosip2/eX_subscribe.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/include/eXosip2/eX_subscribe.h",
+    "sha256": "8dad5b7bb6ee10e2360f7ca1cd298ef63002ce0f9d3012d2f3e1ee571730540c"
+  },
+  {
+    "source": "osip/exosip/include/eXosip2/eXosip.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/include/eXosip2/eXosip.h",
+    "sha256": "0b60029f4347624f55b04e843fa054929b4f8fd9ecfc14b8945664e82d38077c"
+  },
+  {
+    "source": "osip/exosip/src/eXcall_api.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXcall_api.c",
+    "sha256": "af4dfba1bd1792f6b65f834945174a21164515385332ffe9e97de6f9ba48bbf6"
+  },
+  {
+    "source": "osip/exosip/src/eXconf.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXconf.c",
+    "sha256": "03434724d23609f38889140f03648d65e12587abd4df37244ac6cdd52fcb86cb"
+  },
+  {
+    "source": "osip/exosip/src/eXinsubscription_api.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXinsubscription_api.c",
+    "sha256": "d28763ca946517096e1431d31bc37d15776769f3d8d6fc49d69bdcbb8c919bad"
+  },
+  {
+    "source": "osip/exosip/src/eXmessage_api.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXmessage_api.c",
+    "sha256": "1f4955b7dcea62740c093afdb810d919ff5c755282c40b4956d5903a75180c91"
+  },
+  {
+    "source": "osip/exosip/src/eXoptions_api.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXoptions_api.c",
+    "sha256": "f77f3d9bd05df6052a45ef11b77267f066dd98577805ad461c70adde8847a76b"
+  },
+  {
+    "source": "osip/exosip/src/eXosip.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXosip.c",
+    "sha256": "de1c04121335411dc8bc4352665d5bd500b62b513486acfa138227f98c373236"
+  },
+  {
+    "source": "osip/exosip/src/eXosip2.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXosip2.h",
+    "sha256": "282d5d65b29944293b4a7cd68469b18c6374fe869892ddccbd620c988b8f7a9f"
+  },
+  {
+    "source": "osip/exosip/src/eXpublish_api.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXpublish_api.c",
+    "sha256": "129eb94e1025dae83e573d55e64659e94e2c08c750d9bdd5d9a42dfa279e008a"
+  },
+  {
+    "source": "osip/exosip/src/eXregister_api.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXregister_api.c",
+    "sha256": "82f54d56dc3bd73a93ef345f9978f7312df4ad647f3482d9741ec63fb7f26c37"
+  },
+  {
+    "source": "osip/exosip/src/eXsubscription_api.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXsubscription_api.c",
+    "sha256": "69dbad05894cffd877e2bea99afa5499c84a2cfd5cf3c2cfb946c2067b59e845"
+  },
+  {
+    "source": "osip/exosip/src/eXtl_dtls.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXtl_dtls.c",
+    "sha256": "5d4b97549daa4a6731944642d791bbc5828a656c0493f132a20115075689e212"
+  },
+  {
+    "source": "osip/exosip/src/eXtl_tcp.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXtl_tcp.c",
+    "sha256": "1671f87df9aa3c5aa9fb859d1ceee4c8fbe4aacc2ceb8f42eede5e53427d3125"
+  },
+  {
+    "source": "osip/exosip/src/eXtl_tls.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXtl_tls.c",
+    "sha256": "f34c19eb5cb019639768126ccf5317a725ec9b8e3f6c9f2a09555c2e98ef7290"
+  },
+  {
+    "source": "osip/exosip/src/eXtl_udp.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXtl_udp.c",
+    "sha256": "18c165c6a93cd0ef338834af99fb8a1f0fe11f72ecfae0d442dee50ac1d1efd7"
+  },
+  {
+    "source": "osip/exosip/src/eXtransport.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXtransport.c",
+    "sha256": "c2ea0dc21a0f998cefd7b41512a4fcbd4dd2e277522d117efc0eca11ed3f9238"
+  },
+  {
+    "source": "osip/exosip/src/eXtransport.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXtransport.h",
+    "sha256": "35480c35e2562653517caa70b48f476fded42959c64c002ec164034cbf312839"
+  },
+  {
+    "source": "osip/exosip/src/eXutils.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/eXutils.c",
+    "sha256": "65bae2da725ccef2f23ab52449738a27310bbb4d8ad1b9d14bd45a3f4f3162df"
+  },
+  {
+    "source": "osip/exosip/src/inet_ntop.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/inet_ntop.c",
+    "sha256": "be2d048be5a79aeffe739643cd3ca468d47d0172259e814811f332ebf3941535"
+  },
+  {
+    "source": "osip/exosip/src/inet_ntop.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/inet_ntop.h",
+    "sha256": "1d1746ce012e11eddc44a819ecdf51a9cd7fa48b91c223ddf0e4061c0b560abc"
+  },
+  {
+    "source": "osip/exosip/src/jauth.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jauth.c",
+    "sha256": "e5a78707103dd1e44e5608dbd86401922c091b62b8e4d62a13ef84059ad260e3"
+  },
+  {
+    "source": "osip/exosip/src/jcall.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jcall.c",
+    "sha256": "a8cd1f87306c0d22f1eeb906d4c0c42b883dd3b986318005d588dc42ec2a7bb8"
+  },
+  {
+    "source": "osip/exosip/src/jcallback.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jcallback.c",
+    "sha256": "2f53643447753f1af9d34c3a75a32c03b5975b7e83107a60899fed62da3da3ca"
+  },
+  {
+    "source": "osip/exosip/src/jdialog.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jdialog.c",
+    "sha256": "299da1f4c1d489f3a11562fa6c68269d0511dc9354dcb96f6ed4c08eba562a24"
+  },
+  {
+    "source": "osip/exosip/src/jevents.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jevents.c",
+    "sha256": "0f67578b12595b54e8b31ca7db8cbafd1318fc8820e0410bf6f4552d5ab85f41"
+  },
+  {
+    "source": "osip/exosip/src/jnotify.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jnotify.c",
+    "sha256": "98a8feb9cc0403cdd666ed3da1f75aef70707c031f0eca9b80562da10ef92d20"
+  },
+  {
+    "source": "osip/exosip/src/jpipe.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jpipe.c",
+    "sha256": "9b3573b8cd03e4ec19928f9fc5db0f44b0b827f67cc52c15a5c814e7de45fe82"
+  },
+  {
+    "source": "osip/exosip/src/jpipe.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jpipe.h",
+    "sha256": "e7daf8ae213d291afa59169d55c8aea176e66aaa6881bb0936ca92512c47b5ae"
+  },
+  {
+    "source": "osip/exosip/src/jpublish.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jpublish.c",
+    "sha256": "a07abcc1acad1fb44288b48b490388d8058fc7d209d4c4692f8ba7a33e8944de"
+  },
+  {
+    "source": "osip/exosip/src/jreg.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jreg.c",
+    "sha256": "033d76dbf0c71ed3b12cafe2290c4bd5a000f8e8132861e25fac4a3988877b02"
+  },
+  {
+    "source": "osip/exosip/src/jrequest.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jrequest.c",
+    "sha256": "4fe043056cb3f285cf58bbc228f859f749373d3d13afcad12519a0c18778d555"
+  },
+  {
+    "source": "osip/exosip/src/jresponse.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jresponse.c",
+    "sha256": "96f330b064004a74137c2486506f8e1a7eed56aeb7c0d1d21866d1331b240eef"
+  },
+  {
+    "source": "osip/exosip/src/jsubscribe.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/jsubscribe.c",
+    "sha256": "e885d02dcc80de7fb33c6b02780027a3e173c253948c03857f9ed8740e0af3a8"
+  },
+  {
+    "source": "osip/exosip/src/milenage.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/milenage.c",
+    "sha256": "cca6cba2d10fc922012e30d34d284ea0e505c9f290caf5d471f9b223a7d9d23a"
+  },
+  {
+    "source": "osip/exosip/src/milenage.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/milenage.h",
+    "sha256": "c2ab126aee3116a1c080b700805e08b9f2919f237bb390ef15b2e1d59912328f"
+  },
+  {
+    "source": "osip/exosip/src/misc.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/misc.c",
+    "sha256": "f874768aedc866bf3c15d8deb5b722685128e12771a262e7ca8e915526fe3e9a"
+  },
+  {
+    "source": "osip/exosip/src/rijndael.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/rijndael.c",
+    "sha256": "fe3ac32f7a29278ab8a2adf0305e63eea2822badd44a259800ba886d2bf86d28"
+  },
+  {
+    "source": "osip/exosip/src/rijndael.h",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/rijndael.h",
+    "sha256": "8dcb245314d3459c5e3a2afc8564634a6c18f5bee2a76d49fafeaf9310e9784f"
+  },
+  {
+    "source": "osip/exosip/src/sdp_offans.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/sdp_offans.c",
+    "sha256": "93a2d6c6d61cf9ba2c8319d615668ef85f0fef7bb0684be573d8e24d05f71a8f"
+  },
+  {
+    "source": "osip/exosip/src/udp.c",
+    "target": "components/qcm_voip/vendor/osip/exosip/src/udp.c",
+    "sha256": "b1ea07b49b4c438fd81484f88b7d12d1cfddfe30a9e7d801b836e4c0e06e434c"
+  },
+  {
+    "source": "osip/include/osip2/internal.h",
+    "target": "components/qcm_voip/vendor/osip/include/osip2/internal.h",
+    "sha256": "2356cf671bcd16c93ef3feddea86b9826eb0b39df20babfe010b55ec341179be"
+  },
+  {
+    "source": "osip/include/osip2/osip.h",
+    "target": "components/qcm_voip/vendor/osip/include/osip2/osip.h",
+    "sha256": "55ecf191ac76ad9ed4c414b5e3731b0128cfd7ccb5d7d597d8858657298bc7a9"
+  },
+  {
+    "source": "osip/include/osip2/osip_condv.h",
+    "target": "components/qcm_voip/vendor/osip/include/osip2/osip_condv.h",
+    "sha256": "4b788f5ee6dac5728921821c79b0d656fdc268d64784e6b14660a72f67291b63"
+  },
+  {
+    "source": "osip/include/osip2/osip_dialog.h",
+    "target": "components/qcm_voip/vendor/osip/include/osip2/osip_dialog.h",
+    "sha256": "54b92e3529be74d5d8be6abb44deb0348f5813abf0075989465316a12909e8f7"
+  },
+  {
+    "source": "osip/include/osip2/osip_fifo.h",
+    "target": "components/qcm_voip/vendor/osip/include/osip2/osip_fifo.h",
+    "sha256": "78982a0f88dd761b913112598ae44257e0802cb2693dd412a8adeaaea87b484e"
+  },
+  {
+    "source": "osip/include/osip2/osip_mt.h",
+    "target": "components/qcm_voip/vendor/osip/include/osip2/osip_mt.h",
+    "sha256": "e5d981cb6ddd1b9cd8eb88e649939869d3f32c8934c49461d5d19c70da377a93"
+  },
+  {
+    "source": "osip/include/osip2/osip_time.h",
+    "target": "components/qcm_voip/vendor/osip/include/osip2/osip_time.h",
+    "sha256": "0f62c131b777d7543d7af943374adb3bd785a270f3a36081a76cd738c8c28393"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_accept.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_accept.h",
+    "sha256": "20168f104bcec753c1ee800285d5f31c51647907122f29ae5ce27ff038b5ce7d"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_accept_encoding.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_accept_encoding.h",
+    "sha256": "7e4caa462e37a90132a12a0e47a4ad54ceafd47e0fe3fa5053e91715b3bd30f8"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_accept_language.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_accept_language.h",
+    "sha256": "ff806d0d058fc348afde9dea3c3ff4a57e87948ef04f6c6eb37119ec554417de"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_alert_info.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_alert_info.h",
+    "sha256": "bc7f8ed4c5cce096a85773effef76cac7917441b9a10e3a601e0d75882cacbf7"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_allow.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_allow.h",
+    "sha256": "9b3234c3b97f81375f699bd0115f24fed746e0be9d2f92ab9580b3b266ccdadf"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_authentication_info.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_authentication_info.h",
+    "sha256": "47bd29208f84c878daa55f4872c51729ab745ba1c2351bf8ac417666fc5ed038"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_authorization.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_authorization.h",
+    "sha256": "357207e9272d8cbfb69fc4fcce70d2d48b550a8eaf316575689b225f284499de"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_call_id.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_call_id.h",
+    "sha256": "a704bf75547750b7c834b20b56777dd864a63a8878e07b557f8c26eebd719ffd"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_call_info.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_call_info.h",
+    "sha256": "cf2097f3e5457f9591363b7df60ed14f19a3616a815b99af4d815a4bee3cf6a1"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_contact.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_contact.h",
+    "sha256": "1918d01ce7928ae33f55c68bd33e215cc6a6c84658f23a8ee4c7598afc8d0d5e"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_content_disposition.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_content_disposition.h",
+    "sha256": "5bdb9ac870e4a80f5fabf3367b9c93c21976177b0983c9a0c74765e8b6253e55"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_content_encoding.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_content_encoding.h",
+    "sha256": "3bf6931eb91c0f2ae95c857645943189dae893e209b773afcfcbfd3c09ff7e17"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_content_length.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_content_length.h",
+    "sha256": "3964977a96b67a29ce8a3907fb1442edda5b24209e31580168a37fc0302767cc"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_content_type.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_content_type.h",
+    "sha256": "59e4b58a9907fad742804035486b9d1b249924f0bce798660803a93f11300f09"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_cseq.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_cseq.h",
+    "sha256": "2b4e1efee9f75c805c93d5576c23403bd3395b2071fb3016740968fd7de8eeea"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_error_info.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_error_info.h",
+    "sha256": "b1a5722ef9e51776e56f76263625035cad437a22062044d7b008d34a0c6dbce7"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_from.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_from.h",
+    "sha256": "f91ed3d2742a7aa2c9b177664b333ac10eff40d1bbbc2bcaed04c95cab3415ae"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_header.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_header.h",
+    "sha256": "765a52b84330909a716b29f491051cca69e02c4afd18b31425c49f15f515b246"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_mime_version.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_mime_version.h",
+    "sha256": "e7f34cfabfeb04edbe51ccce8450804106246d8d47d7ede922a60c1339c6499f"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_proxy_authenticate.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_proxy_authenticate.h",
+    "sha256": "550c4d53dfdae885636725596082eec1e67fefb9e9f908f055dc2c66110f45b5"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_proxy_authentication_info.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_proxy_authentication_info.h",
+    "sha256": "6e15aade9367fb8bf0465730d89b1eef41d1c2f7ebfe8fea3d421fc4c5168ce0"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_proxy_authorization.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_proxy_authorization.h",
+    "sha256": "3f69c8f991ab1f0bb8239267d514cd366ab1ed161339b06852bbd8445f2762da"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_record_route.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_record_route.h",
+    "sha256": "1d29bba3f3782c7791a4a44e1d9fd71121a4a95a5d78af42233810e643ec9eb5"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_route.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_route.h",
+    "sha256": "8edbc0311d45e8d22979c69483add5b69970b801910b1fd564e45ff086177ca9"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_to.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_to.h",
+    "sha256": "b1f9bd768540efff5fbf9687f148ff029bf92604597e3ac0838f6ff8160a2a7d"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_via.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_via.h",
+    "sha256": "679e6df6be8ed2ab9231d429e23dc9b47dfdce357da152bba0e4ddf5082d04f8"
+  },
+  {
+    "source": "osip/include/osipparser2/headers/osip_www_authenticate.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/headers/osip_www_authenticate.h",
+    "sha256": "77501c1e1a1aca0bf2a92b42cf0139e883b60fd0a7853442324c6647cb9a1495"
+  },
+  {
+    "source": "osip/include/osipparser2/internal.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/internal.h",
+    "sha256": "25520cdccb918c00e69b59607051f51b1bc9c2473d3ea4053de19670e0b49d8c"
+  },
+  {
+    "source": "osip/include/osipparser2/osip_body.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/osip_body.h",
+    "sha256": "253c9139f034a63cd78edf0e878e9df529efea6fb32403d4aa11dbddd812fa4c"
+  },
+  {
+    "source": "osip/include/osipparser2/osip_const.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/osip_const.h",
+    "sha256": "2be43839c77a64bd41d512383e67009c5021f8fb73552b6dc3ce1c1a9ede2ddf"
+  },
+  {
+    "source": "osip/include/osipparser2/osip_headers.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/osip_headers.h",
+    "sha256": "938a6ad0797fe72e2ccb7258d9dd31846e513021a8f5a72a4aeee9536a0ba91d"
+  },
+  {
+    "source": "osip/include/osipparser2/osip_list.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/osip_list.h",
+    "sha256": "dec02ebf2342094855301d8753354689eeb9593df71287ca11750e512ee2b50c"
+  },
+  {
+    "source": "osip/include/osipparser2/osip_md5.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/osip_md5.h",
+    "sha256": "3d05de939d8ee95585e3c9c5fa007566c2a6f94ca4c6cca24afd5acd1752e052"
+  },
+  {
+    "source": "osip/include/osipparser2/osip_message.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/osip_message.h",
+    "sha256": "3b103762970d6ad24d8e46ffb3736c5b2dcc517a203485311151cfe471379045"
+  },
+  {
+    "source": "osip/include/osipparser2/osip_parser.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/osip_parser.h",
+    "sha256": "0dff8674148a3f4e313e15b8a0a4890ac212bcf62e89a8ada04b75e4a7f4a0d5"
+  },
+  {
+    "source": "osip/include/osipparser2/osip_port.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/osip_port.h",
+    "sha256": "6ef7ad238ae486765d644ba8e88681157bdb61706026ee80e9ff43b345a8dce6"
+  },
+  {
+    "source": "osip/include/osipparser2/osip_uri.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/osip_uri.h",
+    "sha256": "2935beeb132d470a8734c007d065891bbce113492573579f1c668312c926b0ae"
+  },
+  {
+    "source": "osip/include/osipparser2/sdp_message.h",
+    "target": "components/qcm_voip/vendor/osip/include/osipparser2/sdp_message.h",
+    "sha256": "fb18ea4145dc8d16a6604f554162f8c2d775ad0ba0a30a6d4a6f64cc74539c20"
+  },
+  {
+    "source": "osip/osip2/fsm.h",
+    "target": "components/qcm_voip/vendor/osip/osip2/fsm.h",
+    "sha256": "53435fdf2685d5c4503d725194ff52a9aa61e6a9172de3f94017fb8acbe07d47"
+  },
+  {
+    "source": "osip/osip2/fsm_misc.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/fsm_misc.c",
+    "sha256": "91a70ff7092db152ccbab76630f8ca4c341d0d61ac36a7a00a574bd93d34a313"
+  },
+  {
+    "source": "osip/osip2/ict.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/ict.c",
+    "sha256": "3159d11ae570d4734b721deeee2b99677d7988b57bb0294188cd1d7da22f8741"
+  },
+  {
+    "source": "osip/osip2/ict_fsm.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/ict_fsm.c",
+    "sha256": "257a9018fd2855de0fe47e0ea20735ee7774ea007c74e9320c6d84da2017dd30"
+  },
+  {
+    "source": "osip/osip2/ist.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/ist.c",
+    "sha256": "2aacdc4351d48fe5c481adc5241754470857f4c333ee6ba51f192265e5621ef0"
+  },
+  {
+    "source": "osip/osip2/ist_fsm.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/ist_fsm.c",
+    "sha256": "fb2c5cb14c4a45e63b7370cb04b6c39865b4fd7e6565b976692e40ab66d538a7"
+  },
+  {
+    "source": "osip/osip2/nict.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/nict.c",
+    "sha256": "02860d8fe1555b9aae12306e80872dfb30ea12b9f92bdf7d2d0e6f50ee9cc39c"
+  },
+  {
+    "source": "osip/osip2/nict_fsm.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/nict_fsm.c",
+    "sha256": "90cbcea1a070681c778a5b03699c9262fab6a908de33a6c6aed3c22a434b16ad"
+  },
+  {
+    "source": "osip/osip2/nist.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/nist.c",
+    "sha256": "0e5a18d7ed59d59ed9afde610cc1a0b6a201ac45d21327a1b71fb8f4acc0794e"
+  },
+  {
+    "source": "osip/osip2/nist_fsm.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/nist_fsm.c",
+    "sha256": "1b54e6a6a81428a83fb30e03a01e2a031730cefa3b51e7d9423bf372cd0f222f"
+  },
+  {
+    "source": "osip/osip2/osip.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/osip.c",
+    "sha256": "7b57d07301e8a27bbff9e403aaf70b7065e778463eb32a5e4d57b36b2b787c42"
+  },
+  {
+    "source": "osip/osip2/osip_dialog.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/osip_dialog.c",
+    "sha256": "c999e2a2e5cb2fb6d2d2ef0609c2b1ac7aac74dd57c2c9d473b6a1757f37a943"
+  },
+  {
+    "source": "osip/osip2/osip_event.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/osip_event.c",
+    "sha256": "b875202cfd5764532238e968617ee44f749b556ca658e8d10b65cd6eee92dc6a"
+  },
+  {
+    "source": "osip/osip2/osip_time.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/osip_time.c",
+    "sha256": "160bf936d0945a694005ee98d6ca8b9e2ed3b5a7e27466f219e1748f0cd830cc"
+  },
+  {
+    "source": "osip/osip2/osip_transaction.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/osip_transaction.c",
+    "sha256": "6ada7efcdf4c33d92c563d917dd60887ff459817bf78592973b1d0e86f09b156"
+  },
+  {
+    "source": "osip/osip2/port_condv.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/port_condv.c",
+    "sha256": "2625f44507cf02b8fb06d8a0df60e5e78964c63715549f67fadff9bb36904ba5"
+  },
+  {
+    "source": "osip/osip2/port_fifo.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/port_fifo.c",
+    "sha256": "c3d37a86b0c49632a6c9ff14304cbc7de8599545dceeabd8724100337c3262b1"
+  },
+  {
+    "source": "osip/osip2/port_sema.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/port_sema.c",
+    "sha256": "8d3bb5a4fffce75bcfd50d914680fcd724d89ab673c22ebd6b82cc91442dee3c"
+  },
+  {
+    "source": "osip/osip2/port_thread.c",
+    "target": "components/qcm_voip/vendor/osip/osip2/port_thread.c",
+    "sha256": "7492975c13ade15517277254b45a8da86154f38165833a8be861bb042324bcd8"
+  },
+  {
+    "source": "osip/osip2/xixt.h",
+    "target": "components/qcm_voip/vendor/osip/osip2/xixt.h",
+    "sha256": "d48bf0aa83a37c02c29267a4c2c9116aaf374337104007f2d773e283f10b24ee"
+  },
+  {
+    "source": "osip/osipparser2/osip_accept.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_accept.c",
+    "sha256": "852fd49aba64b21e9a7a7d3dd73d06a16fee9df87786157c86a87be0f2130134"
+  },
+  {
+    "source": "osip/osipparser2/osip_accept_encoding.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_accept_encoding.c",
+    "sha256": "063c8e69842796eef5bcc82a570caf5a370ad0d3ea2779290816c7cb82b21447"
+  },
+  {
+    "source": "osip/osipparser2/osip_accept_language.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_accept_language.c",
+    "sha256": "c6c2dd48e6e2122cb52f542f79996b307a2b4f9c9748a5938248e3fdfe75b7af"
+  },
+  {
+    "source": "osip/osipparser2/osip_alert_info.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_alert_info.c",
+    "sha256": "0d5df729815771eebb57626bc44a94356cdd7fe5b5fbf984d5fb5fbee06cf20e"
+  },
+  {
+    "source": "osip/osipparser2/osip_allow.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_allow.c",
+    "sha256": "711952445abb5b475cfcafa9522dda9af8baf1c4b8638099e84e121beb4fb65f"
+  },
+  {
+    "source": "osip/osipparser2/osip_authentication_info.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_authentication_info.c",
+    "sha256": "174c2c472d7e3377f2517a0b0b229fcc60c4bcc80a49b14eee766809627a99ec"
+  },
+  {
+    "source": "osip/osipparser2/osip_authorization.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_authorization.c",
+    "sha256": "5a844aca56c5dcecfb7dd9960aedffd087c180046c5175aebbd139e848313363"
+  },
+  {
+    "source": "osip/osipparser2/osip_body.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_body.c",
+    "sha256": "3e260bd34e1c06ebe140bd30c052f900c7329b6442fa7906e44a4f6542b15ce6"
+  },
+  {
+    "source": "osip/osipparser2/osip_call_id.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_call_id.c",
+    "sha256": "6432f686a1acbaa4358f1e4157866ac2490ef8561e25f8599e9eb3492585af5e"
+  },
+  {
+    "source": "osip/osipparser2/osip_call_info.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_call_info.c",
+    "sha256": "c8df7d75393dbe08c241f7ab01bf1c3ba70bab8da233daaa050c65183f4a922d"
+  },
+  {
+    "source": "osip/osipparser2/osip_contact.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_contact.c",
+    "sha256": "ef444b28cab0ebb7cdbb455322386febbc2aee3f136772acfc48d85a43d9f180"
+  },
+  {
+    "source": "osip/osipparser2/osip_content_disposition.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_content_disposition.c",
+    "sha256": "2bc73388b4280ffd55b969cb08bf34e8c4c09cce0fee86d46c23ba7d39d0ee92"
+  },
+  {
+    "source": "osip/osipparser2/osip_content_encoding.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_content_encoding.c",
+    "sha256": "29b9366b592627c2cd806fad9dbc5b900f9ddd85ca15ae0444216861d2de0e58"
+  },
+  {
+    "source": "osip/osipparser2/osip_content_length.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_content_length.c",
+    "sha256": "b730a526e160561670fc3017f80351b54d25e4d9af402340891186aae3cea0e3"
+  },
+  {
+    "source": "osip/osipparser2/osip_content_type.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_content_type.c",
+    "sha256": "31d56ab9f0db27381680369c8eaf82241a5bbccae1c7ddb2f719ecd40de81bbc"
+  },
+  {
+    "source": "osip/osipparser2/osip_cseq.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_cseq.c",
+    "sha256": "10cfb4a2f1467933875642d9f40bfa814a2ead7e34123c8a5f7d2d9ed71ba865"
+  },
+  {
+    "source": "osip/osipparser2/osip_error_info.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_error_info.c",
+    "sha256": "eceb64b123222fb12aabe9cca5df4ab1605975c6b52b6778bc223e66757c5854"
+  },
+  {
+    "source": "osip/osipparser2/osip_from.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_from.c",
+    "sha256": "654560efc65aa7c5c0b20365dd2e56e0a17fc349bb14e1d4a4c1c172efbb4900"
+  },
+  {
+    "source": "osip/osipparser2/osip_header.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_header.c",
+    "sha256": "36d7ece277a25c2404ed4176c2bbeb4f6b7b4e2f0c846f7789942bc9a77465cc"
+  },
+  {
+    "source": "osip/osipparser2/osip_list.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_list.c",
+    "sha256": "0d40c336f9f36d353c8bad37ceda214771a4b84e516f8ce0954285069bad54c1"
+  },
+  {
+    "source": "osip/osipparser2/osip_md5c.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_md5c.c",
+    "sha256": "e55b617b685c47254a8bafcab72f0c7f0c3f4b60f227a9d4e577c0b4bd0c6c54"
+  },
+  {
+    "source": "osip/osipparser2/osip_message.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_message.c",
+    "sha256": "29f0bacdcf412f08904c3d787ec4019883165ff06337e1ea7e3ea33a53887b4b"
+  },
+  {
+    "source": "osip/osipparser2/osip_message_parse.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_message_parse.c",
+    "sha256": "47a0208335665bfdc27b725641fc2e1f001c29b31d550fad342258416b5d4ba1"
+  },
+  {
+    "source": "osip/osipparser2/osip_message_to_str.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_message_to_str.c",
+    "sha256": "a317cae7bd312d5f59fed3d1f0b281772a202818198634c5ed6cfecdd0b586be"
+  },
+  {
+    "source": "osip/osipparser2/osip_mime_version.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_mime_version.c",
+    "sha256": "4abaf16411a005dd1da97f762599b1483177b6925c005eb81cce58f4f1ef521d"
+  },
+  {
+    "source": "osip/osipparser2/osip_parser_cfg.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_parser_cfg.c",
+    "sha256": "5de77f0e9181c87d0a5f14f6f2cfe19675227e44dd31057f9d6a7a7f367d0ed1"
+  },
+  {
+    "source": "osip/osipparser2/osip_port.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_port.c",
+    "sha256": "8c9ebb4b3aa35d3a1e7b68b24fb9dc6644da8bad3dc7c0eb62f4a1b70f627ad2"
+  },
+  {
+    "source": "osip/osipparser2/osip_proxy_authenticate.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_proxy_authenticate.c",
+    "sha256": "68aa5d7c5ebf08f79b4120741105736ea10dab49122f11b55247d7aa935a70f7"
+  },
+  {
+    "source": "osip/osipparser2/osip_proxy_authentication_info.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_proxy_authentication_info.c",
+    "sha256": "deddf6a2bcad709ad802647715cbfbf3403a6c27f3d8991312a38806195917f8"
+  },
+  {
+    "source": "osip/osipparser2/osip_proxy_authorization.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_proxy_authorization.c",
+    "sha256": "250c10696ba2a072d97e6524732cc9c72a9214a61ef4402b0946abb506e7f170"
+  },
+  {
+    "source": "osip/osipparser2/osip_record_route.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_record_route.c",
+    "sha256": "8bd4a45959f045877cbf4494e310f96da5085bc81041aa83f1074655f80e401f"
+  },
+  {
+    "source": "osip/osipparser2/osip_route.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_route.c",
+    "sha256": "000309d41177a4a7f12c484730fcbd824d145a2d2dfd72b838e6de10f51cf147"
+  },
+  {
+    "source": "osip/osipparser2/osip_to.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_to.c",
+    "sha256": "c345bd224f17301256375209f32c8a72a2731b1a4f3656330985a1fb3c1a34a8"
+  },
+  {
+    "source": "osip/osipparser2/osip_uri.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_uri.c",
+    "sha256": "0060bf5468c211ddf86f84ff7223d4df61054eeef1bc6fbf3a30821e9ecd9a2f"
+  },
+  {
+    "source": "osip/osipparser2/osip_via.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_via.c",
+    "sha256": "5122fa7c2b5f3c4f2543dc959fb7f5cca9fb25b34232f91f297333d02fadf221"
+  },
+  {
+    "source": "osip/osipparser2/osip_www_authenticate.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/osip_www_authenticate.c",
+    "sha256": "180c764d9129dfe82dd2c85580eec11aff49f5a7f0a7682ba281deb0324e4fa3"
+  },
+  {
+    "source": "osip/osipparser2/parser.h",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/parser.h",
+    "sha256": "8140ccb759868020f766da8991f0a5a8a9807b060ad74d195c960de18c2fbfe1"
+  },
+  {
+    "source": "osip/osipparser2/sdp_accessor.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/sdp_accessor.c",
+    "sha256": "3957b08d46394b21dc2e3fba1753e4e380167dd6020d0b9111b126579bfa353c"
+  },
+  {
+    "source": "osip/osipparser2/sdp_message.c",
+    "target": "components/qcm_voip/vendor/osip/osipparser2/sdp_message.c",
+    "sha256": "b51932135cc70ed6f25b5c2280394f188120ad8222c044c96d45c7eda27da725"
+  }
+]
