@@ -1,0 +1,13 @@
+# Generated build output belongs to the consuming application.
+/build/
+/_build/
+/qos_build/
+*.o
+*.obj
+*.a
+*.elf
+*.map
+*.hbinpkg
+*.log
+__pycache__/
+*.pyc
