@@ -44,12 +44,16 @@ uint64_t voip_monotonic_ms(void)
     uint64_t value;
     uint32_t now;
     qosa_enter_critical();
-    now=qosa_get_running_time();
+    now=qosa_get_system_tick_cnt();
     elapsed+=(uint32_t)(now-previous);
     previous=now;
-    value=elapsed;
+    value=(elapsed * 1000ULL) / CONFIG_QOSA_SYS_TICK_PER_SECOND;
     qosa_exit_critical();
     return value;
+}
+uint32_t qcm_voip_uptime_ms(void)
+{
+    return (uint32_t)voip_monotonic_ms();
 }
 int voip_gettimeofday(struct timeval *tv,void *tz)
 {

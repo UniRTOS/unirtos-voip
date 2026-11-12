@@ -11,6 +11,7 @@
 #include <sys/time.h>
 #include "qosa_sys.h"
 #include "qosa_rtc.h"
+#include "qcm_voip_platform.h"
 #include "qosa_sockets.h"
 #include "qosa_log.h"
 
@@ -43,7 +44,7 @@ typedef struct voip_timer *quec_timer_t;
 #define kNotInitializedErr (-1)
 #define QUEC_WAIT_FOREVER QOSA_WAIT_FOREVER
 #define QUEC_NO_WAIT QOSA_NO_WAIT
-#define quec_rtos_get_systime qosa_get_running_time
+#define quec_rtos_get_systime qcm_voip_uptime_ms
 #define quec_rtos_queue_create qosa_msgq_create
 #define quec_rtos_queue_release qosa_msgq_release
 #define quec_rtos_queue_wait qosa_msgq_wait

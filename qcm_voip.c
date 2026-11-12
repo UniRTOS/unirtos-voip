@@ -34,7 +34,7 @@ static void call_state(void *ctx,quec_voip_call_t *call)
     status.peer[sizeof(status.peer)-1]=0;
     qosa_exit_critical();
     // 仅切换适配层配置，不在状态回调里执行硬件或阻塞操作。
-    voip_pcm_use_ringback(next_state == QCM_VOIP_DIALING || next_state == QCM_VOIP_ALERTING);
+    voip_pcm_set_call_state(next_state);
 }
 static bool active(void)
 {
@@ -65,14 +65,28 @@ int qcm_voip_set_audio(unsigned volume, unsigned capture_gain_percent)
 }
 
 /** @brief 配置主叫振铃阶段的下行播放等级。
- * @param[in] unsigned volume 0～11；0 静音，1 最轻，接通音量由 set_audio 单独设置。
+ * @param[in] unsigned volume 0～11；0 静音，1 为 PCM 幅度 1/32，6 为原幅度；接通音量由 set_audio 单独设置。
  * @return 0 成功，-1 参数无效或服务已启动。
- * @note 仅 SIP 停止时由串行控制任务调用；不识别服务器在 200 之后混入的提示音。
+ * @note 仅 SIP 停止时由串行控制任务调用；提前 200 的提示音可由 answered_tone_guard 识别后使用此档位。
  */
 int qcm_voip_set_ringback_volume(unsigned volume)
 {
     if (started || active()) return -1;
     return voip_pcm_set_ringback_volume(volume);
+}
+
+/** @brief 仅在 SIP 停止时启用主叫提前应答提示音兼容。 */
+int qcm_voip_set_answered_tone_guard(bool enabled)
+{
+    if (started || active()) return -1;
+    voip_pcm_set_answered_tone_guard(enabled);
+    return 0;
+}
+
+/** @brief 提供主动查询快照，不产生自动通知。 */
+void qcm_voip_get_audio_diag(qcm_voip_audio_diag_t *diag)
+{
+    voip_pcm_get_audio_diag(diag);
 }
 
 int qcm_voip_configure(const qcm_voip_config_t *config)
@@ -112,7 +126,7 @@ int qcm_voip_stop(void)
     int ret;
     if (!status.initialized) return 0;
     ret=quec_voip_stop();
-    if (!ret) { started=false; qosa_enter_critical(); status.registered=false; status.state=QCM_VOIP_IDLE; qosa_exit_critical(); }
+    if (!ret) { started=false; qosa_enter_critical(); status.registered=false; status.state=QCM_VOIP_IDLE; qosa_exit_critical(); voip_pcm_set_call_state(QCM_VOIP_IDLE); }
     return ret;
 }
 int qcm_voip_dial(const char *peer)

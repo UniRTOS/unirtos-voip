@@ -11,4 +11,4 @@
 
 各文件的实际版权头和附带许可证是对应文件的依据。本说明仅记录现有材料，不为所有文件另行授予统一许可证，也不沿用 LVGL 示例的许可证。
 
-历史源路径和原始校验值位于 `source_manifest.json`。其中 `target` 的 `components/qcm_voip/` 前缀对应本仓库根目录；校验值是原始 ASR 来源记录，不应当作当前已适配文件的哈希。
+历史源路径和原始校验值位于 [docs/source_manifest.json](docs/source_manifest.json)。其中 `target` 的 `components/qcm_voip/` 前缀对应本仓库根目录；校验值是原始 ASR 来源记录，不应当作当前已适配文件的哈希。

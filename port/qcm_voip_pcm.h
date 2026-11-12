@@ -8,11 +8,12 @@ int voip_pcm_init(void);
  * @return 0 成功，-1 超出范围；失败保留原值。
  */
 int voip_pcm_set_ringback_volume(unsigned volume);
-/** @brief 按当前 SIP 状态选择下一条播放流的等级。
- * @param[in] bool enabled true 为主叫振铃，false 为正常通话。
- * @return 无；只更新短临界区中的状态，不调用硬件。
- */
-void voip_pcm_use_ringback(bool enabled);
+/** @brief 保存单路通话状态及主被叫角色；不操作硬件。 */
+void voip_pcm_set_call_state(qcm_voip_call_state_t state);
+/** @brief 保存可选的提前应答识别开关；SIP 停止时调用。 */
+void voip_pcm_set_answered_tone_guard(bool enabled);
+/** @brief 获取当前播放诊断，不含累计值。 */
+void voip_pcm_get_audio_diag(qcm_voip_audio_diag_t *diag);
 /** @brief 保存 PCM 流打开时使用的播放等级及上行数字增益。
  * @param[in] unsigned volume 播放等级 0～11。
  * @param[in] unsigned capture_gain_percent 上行幅度百分比 100～800。
