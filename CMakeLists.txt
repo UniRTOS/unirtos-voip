@@ -5,21 +5,17 @@ if(DEFINED UNIRTOS_EXTERNAL_LIBRARY_NAME AND
     message(FATAL_ERROR "This repository must be built as the unirtos-voip library")
 endif()
 
-# v1.0.1 preserves the EG800Z QuecDuino implementation verified in the source project.
+# EG800Z uses Cortex-M3 Thumb and the official SDK PCM stream ABI.
 if(NOT "${build_project}" STREQUAL "EG800ZCN_LA")
     message(FATAL_ERROR "unirtos-voip v1.0.1 supports EG800ZCN_LA only")
 endif()
-if(NOT DEFINED UNIRTOS_VOIP_AUDIO_ABI OR NOT "${UNIRTOS_VOIP_AUDIO_ABI}" STREQUAL "1")
-    message(FATAL_ERROR
-        "unirtos-voip requires a matching SDK with UNIRTOS_VOIP_AUDIO_ABI=1 "
-        "(local validation SDK 1.0.4-voip.1). Update the audio headers, libraries "
-        "and platform base together; the stock v1.0.4 audio ABI is incompatible.")
-endif()
-
-if(NOT TARGET qcm_audio OR NOT TARGET socket_adapter)
-    message(FATAL_ERROR
-        "The SDK must configure qcm_audio and socket_adapter targets before unirtos-voip")
-endif()
+# The official SDK links its prebuilt audio/socket archives from kernel.cmake.
+# Check feature selection instead of requiring locally invented CMake targets.
+foreach(feature QCM_AUDIO_STREAM_FUNC QCM_SOCKET_ADP_FUNC)
+    if(NOT CONFIG_${feature})
+        message(FATAL_ERROR "unirtos-voip requires CONFIG_${feature}=y in the application menuconfig/.config")
+    endif()
+endforeach()
 
 add_library(${target} STATIC)
 target_include_directories(${target} PRIVATE
@@ -29,7 +25,7 @@ target_include_directories(${target} PRIVATE
     ${SOURCE_COMPONENTS_PUBLIC_INC}
     ${UNIRTOS_COMPONENTS_DIR}/include
 )
-target_include_directories(${target} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/public PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/port
+target_include_directories(${target} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/port
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/app
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/ortp/inc
     ${CMAKE_CURRENT_SOURCE_DIR}/vendor/ortp/mpc
@@ -51,6 +47,7 @@ target_sources(${target} PRIVATE
     qcm_voip.c
     port/qcm_voip_port.c
     port/qcm_voip_pcm.c
+    port/qcm_voip_tone_guard.c
     port/qcm_voip_resample.c
     port/qcm_voip_sdp.c
     vendor/app/qosa_voip.c
@@ -177,7 +174,7 @@ target_sources(${target} PRIVATE
     vendor/osip/exosip/src/sdp_offans.c
     vendor/osip/exosip/src/udp.c
 )
-target_link_libraries(${target} PRIVATE qcm_audio socket_adapter)
+# SDK component archives are included by the SDK firmware link group.
 
 # Legacy vendor warnings stay visible; new UniRTOS boundary code keeps -Werror.
 set_source_files_properties(qcm_voip.c port/qcm_voip_port.c port/qcm_voip_pcm.c PROPERTIES COMPILE_OPTIONS "-Werror")

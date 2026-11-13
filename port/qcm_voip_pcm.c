@@ -6,6 +6,8 @@
 #include "qcm_voip_port.h"
 #include "qcm_voip_pcm.h"
 #include "qcm_voip_resample.h"
+#include "qcm_voip_tone_volume.h"
+#include "qcm_voip_tone_guard.h"
 #include "qcm_audio.h"
 #include "rtp_g711.h"
 
@@ -17,11 +19,16 @@ typedef struct voip_pcm {
     qosa_aud_handle_t stream; /*!< UniRTOS 音频句柄。 */
     uintptr_t generation;   /*!< 播放流代号，用于单播放流占用校验。 */
     bool record;             /*!< true 为录音，false 为播放。 */
+    unsigned playback_volume; /*!< 本播放流最近设置的底层等级；回铃使用 6 加 PCM 衰减。 */
+    voip_tone_guard_t tone_guard; /*!< 仅此播放流的媒体线程访问。 */
     unsigned capture_gain_percent; /*!< 本条流的上行数字幅度百分比快照。 */
     voip_resample_t filter;   /*!< 当前方向的独立转换状态。 */
 } voip_pcm_t;
 static unsigned ringback_volume = 1; /*!< 主叫接通前的独立播放档位。 */
-static bool ringback_selected; /*!< SIP 状态回调维护，打开流时取得快照。 */
+static bool ringback_selected; /*!< SIP 180/183 回铃。 */
+static bool outgoing_call, outgoing_connected, answered_tone_guard;
+static qcm_voip_call_state_t audio_state;
+static qcm_voip_audio_diag_t audio_diag; /*!< 当前帧快照，在短临界区内读写。 */
 static unsigned call_volume = 6; /*!< 未配置时保持平台原始幅度。 */
 static unsigned capture_gain = 100; /*!< 未配置时不放大上行。 */
 static qosa_mutex_t pcm_lifecycle;
@@ -82,13 +89,36 @@ int voip_pcm_set_ringback_volume(unsigned volume)
     return 0;
 }
 
-/** @brief 按当前 SIP 状态选择下一条播放流的等级。
- * @param[in] bool enabled true 为主叫振铃，false 为正常通话。
- * @return 无；只更新短临界区中的状态，不调用硬件。
- */
-void voip_pcm_use_ringback(bool enabled)
+/** @brief 状态回调只发布标志，检测及音量设置由媒体线程执行。 */
+void voip_pcm_set_call_state(qcm_voip_call_state_t state)
 {
-    qosa_enter_critical(); ringback_selected = enabled; qosa_exit_critical();
+    qosa_enter_critical();
+    audio_state = state;
+    ringback_selected = state == QCM_VOIP_DIALING || state == QCM_VOIP_ALERTING;
+    if (ringback_selected) outgoing_call = true;
+    else if (state == QCM_VOIP_IDLE || state == QCM_VOIP_ENDED ||
+             state == QCM_VOIP_INCOMING || state == QCM_VOIP_WAITING) outgoing_call = false;
+    outgoing_connected = outgoing_call && state == QCM_VOIP_CONNECTED;
+    if (state == QCM_VOIP_IDLE || state == QCM_VOIP_ENDED) {
+        memset(&audio_diag, 0, sizeof(audio_diag));
+        audio_diag.level = call_volume;
+    }
+    qosa_exit_critical();
+}
+
+void voip_pcm_set_answered_tone_guard(bool enabled)
+{
+    qosa_enter_critical(); answered_tone_guard = enabled; qosa_exit_critical();
+}
+
+void voip_pcm_get_audio_diag(qcm_voip_audio_diag_t *diag)
+{
+    if (!diag) return;
+    qosa_enter_critical();
+    *diag = audio_diag;
+    diag->guard = answered_tone_guard;
+    if (!playback_active) { diag->mode = 0; diag->level = call_volume; diag->kind = 0; diag->score = 0; }
+    qosa_exit_critical();
 }
 
 /** @brief 在媒体线程创建前初始化 PCM 打开/关闭互斥锁。
@@ -117,16 +147,17 @@ int voip_pcm_open(void **out, int rate, unsigned channels, int record)
     pcm = calloc(1, sizeof(*pcm));
     if (!pcm) return -1;
     pcm->record = !!record;
+    voip_tone_guard_reset(&pcm->tone_guard);
     qosa_enter_critical();
     pcm->capture_gain_percent = capture_gain;
-    volume = ringback_selected ? ringback_volume : call_volume;
+    volume = ringback_selected ? 6U : call_volume;
     qosa_exit_critical();
     cfg.is_record = pcm->record;
     cfg.samprate = 16000;
     cfg.channels = 1;
     cfg.sync_mode = false;
     cfg.format = QOSA_AUD_FMT_PCM;
-    cfg.route = QOSA_AUD_ROUTE_NEAR;
+    /* Official SDK PCM uses the local route; keep reserved options zero. */
     if (!pcm_lifecycle || qosa_mutex_lock(pcm_lifecycle, QOSA_WAIT_FOREVER)) {
         free(pcm);
         return -1;
@@ -143,7 +174,8 @@ int voip_pcm_open(void **out, int rate, unsigned channels, int record)
         playback_active = pcm->generation;
         qosa_exit_critical();
     }
-    // 来电铃声会修改全局等级；每次打开恢复当前回铃/通话阶段的独立等级。
+    // 回铃由本层按帧缩放，底层保持原幅度；正常通话仍用原平台音量曲线。
+    pcm->playback_volume = volume;
     ret = pcm->record ? QOSA_AUD_SUCCESS : qosa_aud_set_volume((qosa_aud_vol_level_e)volume);
     if (ret == QOSA_AUD_SUCCESS) ret = qcm_aud_stream_open(&cfg, &pcm->stream);
     if (ret != QOSA_AUD_SUCCESS && !pcm->record) {
@@ -239,22 +271,58 @@ int voip_pcm_write_alaw(void *handle, const uint8_t *data, unsigned size)
     voip_pcm_t *pcm = handle;
     int16_t input[160];
     int16_t output[320];
+    int16_t pending[320]; /* 底层可原地修改缓冲；短写重试始终从原帧复制。 */
     unsigned used = 0;
-    uint32_t start = qosa_get_running_time();
+    uint32_t start = qcm_voip_uptime_ms();
     if (!pcm || pcm->record || !data) return -1;
     while (used < size) {
         unsigned count = size - used > 160 ? 160 : size - used;
         unsigned offset = 0;
         unsigned i;
-        unsigned bytes;
+        unsigned bytes, volume, tone_volume, mode;
+        bool tone, guard;
+        qcm_voip_call_state_t state;
+        qosa_enter_critical();
+        state = audio_state;
+        tone = ringback_selected;
+        guard = answered_tone_guard && outgoing_connected;
+        tone_volume = ringback_volume;
+        volume = call_volume;
+        qosa_exit_critical();
         for (i = 0; i < count; ++i) input[i] = alaw2linear(data[used + i]);
+        mode = tone ? 1U : 0U;
+        if (guard) {
+            tone = voip_tone_guard_process(&pcm->tone_guard, input, count);
+            mode = pcm->tone_guard.speech ? 4U : (pcm->tone_guard.kind ? 3U : 2U);
+        }
+        qosa_enter_critical();
+        /* 已结束或已退休流的迟到帧不得覆盖当前诊断。 */
+        if (playback_active == pcm->generation &&
+            (state == audio_state && state != QCM_VOIP_IDLE && state != QCM_VOIP_ENDED)) {
+            audio_diag.mode = mode;
+            audio_diag.level = tone ? tone_volume : volume;
+            audio_diag.kind = guard ? pcm->tone_guard.kind : 0;
+            audio_diag.score = guard ? pcm->tone_guard.score : 0;
+        }
+        qosa_exit_critical();
+        if (tone) volume = 6U;
+        if (volume != pcm->playback_volume) {
+            if (qosa_aud_set_volume((qosa_aud_vol_level_e)volume)) return -1;
+            pcm->playback_volume = volume;
+        }
         bytes = (unsigned)voip_resample_up(&pcm->filter, input, count, output) * 2U;
+        if (tone) {
+            for (i = 0; i < bytes / 2U; ++i)
+                output[i] = qcm_voip_tone_sample(output[i], tone_volume);
+        }
         while (offset < bytes) {
-            int written = qcm_aud_stream_write(pcm->stream, (uint8_t *)output + offset, bytes - offset);
+            int written;
+            memcpy(pending, (uint8_t *)output + offset, bytes - offset);
+            written = qcm_aud_stream_write(pcm->stream, (uint8_t *)pending, bytes - offset);
             if (written < 0 || written > (int)(bytes - offset) || (written & 1)) return -1;
             offset += (unsigned)written;
             if (!written) {
-                if ((uint32_t)(qosa_get_running_time() - start) >= 100U) return -1;
+                if ((uint32_t)(qcm_voip_uptime_ms() - start) >= 100U) return -1;
                 qosa_task_sleep_ms(10);
             }
         }

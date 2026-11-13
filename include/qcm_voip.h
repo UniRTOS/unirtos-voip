@@ -87,6 +87,7 @@ typedef struct {
     int32_t invite_result; /*!< 最近处理结果，0 成功、正值 SIP 码、负值本地错误。 */
     uint32_t reg_failures; /*!< 最终注册失败次数，不计可重试的鉴权挑战。 */
     int32_t reg_code; /*!< 最近注册结果的 SIP 码；0 为无响应。 */
+    int32_t unreg_code; /*!< 最近注销结果：0 未尝试，2xx 已确认，-1 本地失败，-2 超时，其它为 SIP 错误。 */
 } qcm_voip_net_diag_t;
 
 /** @brief 取得来电和注册诊断快照。
@@ -94,6 +95,25 @@ typedef struct {
  * @return 无；只复制计数，不阻塞控制任务，不含敏感报文。
  */
 void qcm_voip_get_net_diag(qcm_voip_net_diag_t *diag);
+
+/** @struct qcm_voip_audio_diag_t
+ * @brief 当前下行音量及识别状态，无累计计数；只供主动查询。
+ */
+typedef struct {
+    unsigned guard; /*!< 是否启用提前应答提示音兼容。 */
+    unsigned mode; /*!< 0 普通/未播放，1 SIP 回铃，2 正在识别，3 已识别提示音，4 本流语音锁定。 */
+    unsigned level; /*!< 最近一帧采用的逻辑音量档位。 */
+    unsigned kind; /*!< 0 无模板匹配，1=425 Hz，2=450 Hz，3=440+480 Hz。 */
+    unsigned score; /*!< 最近窗口的模板能量百分比 0～100；不是接听可信度。 */
+} qcm_voip_audio_diag_t;
+/** @brief 设置提前 SIP 200 的主叫提示音识别；仅在 SIP 停止时设置。
+ * @param[in] bool enabled true 开启，false 关闭；组件默认关闭，Demo 可显式开启。
+ * @return 0 成功；-1 服务或通话仍在运行。
+ * @note 只调整识别到的下行提示音，不改变 SIP 状态；音频启发式识别可能误判。
+ */
+int qcm_voip_set_answered_tone_guard(bool enabled);
+/** @brief 复制当前音量状态；短临界区操作，不访问硬件。 */
+void qcm_voip_get_audio_diag(qcm_voip_audio_diag_t *diag);
 
 /** @brief Initialize/update the account while stopped; 0 succeeds, nonzero is an error. */
 int qcm_voip_configure(const qcm_voip_config_t *config);
@@ -105,14 +125,14 @@ int qcm_voip_configure(const qcm_voip_config_t *config);
  */
 int qcm_voip_set_audio(unsigned volume, unsigned capture_gain_percent);
 /** @brief 配置主叫振铃阶段的下行播放等级。
- * @param[in] unsigned volume 0～11；0 静音，1 最轻，接通音量由 set_audio 单独设置。
+ * @param[in] unsigned volume 0～11；0 静音，1 为 PCM 幅度 1/32，6 为原幅度；接通音量由 set_audio 单独设置。
  * @return 0 成功，-1 参数无效或服务已启动。
- * @note 仅 SIP 停止时由串行控制任务调用；不识别服务器在 200 之后混入的提示音。
+ * @note 仅 SIP 停止时由串行控制任务调用；提前 200 的提示音可由 answered_tone_guard 识别后使用此档位。
  */
 int qcm_voip_set_ringback_volume(unsigned volume);
 /** @brief Register using the active bearer IPv4; blocks until success/failure. */
 int qcm_voip_start(const char *local_ipv4);
-/** @brief End active calls and stop SIP registration. Returns 0 on success. */
+/** @brief End calls and stop SIP locally, waiting up to 5 s for unregister; inspect net_diag.unreg_code for server confirmation. */
 int qcm_voip_stop(void);
 /** @brief Dial one peer account (1..31 bytes). Only one active call is exposed. */
 int qcm_voip_dial(const char *peer);

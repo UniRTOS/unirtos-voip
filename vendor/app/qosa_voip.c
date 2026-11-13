@@ -52,6 +52,7 @@
 #include "qosa_voip.h"
 #include "qcm_voip_sdp.h"
 #include "qcm_voip_pcm.h"
+#include "qcm_voip_platform.h"
 
 
 #include "sdp_message.h"
@@ -186,6 +187,9 @@ typedef struct
     quec_voip_addr_t         local;
     BOOL                     is_regist;
     int                      reg_id; /*!< 当前注册对象编号，重试复用同一 UDP 监听和注册。 */
+    BOOL                     unregistering; /*!< 停止期间禁止新来电及普通注册成功回调。 */
+    BOOL                     unregister_sent; /*!< 本次注销已入栈；忽略此前的 NAT 删除应答。 */
+    int                      unregister_result; /*!< 当前注销应答/错误；两任务以短临界区同步。 */
     void                    *pending_start_event;
     quec_timer_t             check_timer;
 	unsigned int             check_time;
@@ -1783,42 +1787,143 @@ static int quec_voip_network_check(quec_voip_t *voip)
     return quec_voip_send_regist(voip);
 }
 
+/** @brief 停止时只注销本会话的 Contact，等待有限时间，不删除其它设备的绑定。
+ * @note 管理线程调用；等待时不持有 SIP 锁，SIP 线程继续处理应答及鉴权。
+ * @return 2xx 为服务器确认；-1 本地构造/发送失败；-2 超时；其它正数为 SIP 失败码。
+ */
+static int quec_voip_unregister_wait(quec_voip_t *voip, struct eXosip_t *context)
+{
+    uint32_t start = qcm_voip_uptime_ms();
+    int sent = 0, result = 0;
+    qosa_enter_critical();
+    voip->sip_info.unregistering = TRUE;
+    voip->sip_info.unregister_sent = FALSE;
+    voip->sip_info.unregister_result = 0;
+    qosa_exit_critical();
+    while ((uint32_t)(qcm_voip_uptime_ms() - start) < 5000U)
+    {
+        if (!sent)
+        {
+            osip_message_t *request = NULL;
+            eXosip_reg_t *binding = NULL;
+            int rc = OSIP_WRONG_STATE;
+            eXosip_lock(context);
+            for (eXosip_reg_t *r = context->j_reg; r != NULL; r = r->next)
+                if (r->r_id == voip->sip_info.reg_id) { binding = r; break; }
+            if (!binding) rc = OSIP_NOTFOUND;
+            else if (!binding->r_last_tr || binding->r_last_tr->state == NICT_COMPLETED ||
+                     binding->r_last_tr->state == NICT_TERMINATED)
+            {
+                /* 保留旧 From/Call-ID/Contact/鉴权信息；不用 Contact:* 清除同账号其它设备。 */
+                rc = eXosip_register_build_register(context, voip->sip_info.reg_id, 0, &request);
+                if (!rc)
+                {
+                    osip_contact_t *contact = NULL;
+                    for (int i = 0; osip_message_get_contact(request, i, &contact) == 0; ++i)
+                    {
+                        osip_generic_param_t *expires = NULL;
+                        osip_contact_param_get_byname(contact, "expires", &expires);
+                        if (expires)
+                        {
+                            char *zero = osip_strdup("0");
+                            if (!zero) { rc = OSIP_NOMEM; break; }
+                            osip_free(expires->gvalue);
+                            expires->gvalue = zero;
+                        }
+                    }
+                    if (!rc) rc = eXosip_register_send_register(context, voip->sip_info.reg_id, request);
+                    else osip_message_free(request);
+                    /* send_register 在成功和失败时均接管 request。 */
+                    if (!rc) {
+                        qosa_enter_critical(); voip->sip_info.unregister_sent = TRUE; qosa_exit_critical();
+                    }
+                }
+            }
+            eXosip_unlock(context);
+            if (!rc) sent = 1;
+            else if (rc != OSIP_WRONG_STATE) { result = -1; break; }
+        }
+        qosa_enter_critical(); result = voip->sip_info.unregister_result; qosa_exit_critical();
+        if (result) break;
+        quec_rtos_task_sleep_ms(20);
+    }
+    return result ? result : -2;
+}
+
+/** @brief SIP 线程直接完成注销等待，不投递给正在等待的管理线程。
+ * @note 调用时已持有 SIP 锁并运行 automatic_action；旧普通 REGISTER 成功不算注销成功。
+ */
+static BOOL quec_voip_unregister_event(quec_voip_t *voip, const eXosip_event_t *event)
+{
+    BOOL stopping, sent;
+    osip_header_t *expires = NULL;
+    struct eXosip_t *context = voip->sip_info.sip_context;
+    int result;
+    qosa_enter_critical();
+    stopping = voip->sip_info.unregistering;
+    sent = voip->sip_info.unregister_sent;
+    qosa_exit_critical();
+    if (!stopping) return FALSE;
+    if (!sent) return TRUE;
+    if (event->rid != voip->sip_info.reg_id || !event->request) return TRUE;
+    osip_message_get_expires(event->request, 0, &expires);
+    if (!expires || !expires->hvalue || strcmp(expires->hvalue, "0")) return TRUE;
+    result = event->response ? event->response->status_code : -2;
+    for (eXosip_reg_t *r = context->j_reg; r != NULL; r = r->next)
+        if (r->r_id == event->rid && r->r_last_tr && r->r_last_tr->transactionid != event->tid)
+            return TRUE; /* 忽略旧删除应答，以及 401/407 启动新鉴权后的旧事务。 */
+    if (result >= 200 || result < 0)
+    {
+        qosa_enter_critical(); voip->sip_info.unregister_result = result; qosa_exit_critical();
+    }
+    return TRUE;
+}
+
+/** @brief 单账号 Demo 只接受发往当前 Contact 用户名的新 INVITE。
+ * @return 0 接受；480 停止中；404 非当前账号。From 是主叫，To 可能经过转接，不用于匹配。
+ * @note 在分配来电槽位和开铃之前校验；会话内 re-INVITE 不走此规则。
+ */
+static int quec_voip_invite_account_check(const quec_voip_t *voip, const osip_message_t *request)
+{
+    char account[32];
+    BOOL accepting;
+    qosa_enter_critical();
+    accepting = voip->sip_info.sip_cfg.enable && !voip->sip_info.unregistering;
+    memcpy(account, voip->sip_info.sip_cfg.account, sizeof(account));
+    qosa_exit_critical();
+    account[sizeof(account) - 1] = 0;
+    if (!accepting) return 480;
+    if (!request || !request->req_uri || !request->req_uri->username || !account[0] ||
+        strcmp(request->req_uri->username, account)) return 404;
+    return 0;
+}
+
+/** @brief 有界注销后释放 SIP 任务及上下文；返回值表示本地停止结果。
+ * @note 服务器是否确认单独保存在 unreg_code；失败/断网也完成本地停止，来电账号校验继续兜底。
+ */
 static int quec_voip_unregist(quec_voip_t *voip)
 {
-    char                    str_buff[256] = {0};
-    char                    proxy[256] = {0};
-    int                     optval = 0;
-    struct eXosip_t        *sip_context = NULL;
-    quec_voip_sip_config_t *cfg = NULL;
-    int                     regid = 0;
-    osip_message_t         *reg = NULL;
-    int                     port_range[2] = {0};
-    struct eXosip_t        *excontext = NULL;
-    if (voip == NULL)
+    struct eXosip_t *context;
+    if (!voip) return -1;
+    context = (struct eXosip_t *)voip->sip_info.sip_context;
+    if (context)
     {
-        return -1;
-    }
-
-    excontext = (struct eXosip_t *)voip->sip_info.sip_context;
-    if (excontext)
-    {
-        /* The event reader must exit before eXosip frees its queues and locks. */
+        if (voip->sip_info.reg_id > 0 && voip->sip_info.sip_task)
+        {
+            int result = quec_voip_unregister_wait(voip, context);
+            qosa_enter_critical(); g_net_diag.unreg_code = result; qosa_exit_critical();
+        }
+        /* 应答处理结束后才退出读取线程；join 完成前不释放其访问的 SIP 对象。 */
         keepRunning = 0;
-        if (voip->sip_info.sip_task) voip_thread_join(voip->sip_info.sip_task,NULL);
-        eXosip_quit(excontext);
-        osip_free(excontext);
+        if (voip->sip_info.sip_task) voip_thread_join(voip->sip_info.sip_task, NULL);
+        eXosip_quit(context);
+        osip_free(context);
         voip->sip_info.sip_task = NULL;
         voip->sip_info.sip_context = NULL;
         voip->sip_info.reg_id = 0;
-
+        qosa_enter_critical(); voip->sip_info.unregistering = FALSE; qosa_exit_critical();
     }
-
-    if (voip->sip_info.sip_cfg.enable)
-    {
-        quec_voip_send_network_check(voip);
-        voip_log("check again");
-        return QUEC_VOIP_OK;
-    }
+    if (voip->sip_info.sip_cfg.enable) quec_voip_send_network_check(voip);
     return 0;
 }
 
@@ -1971,6 +2076,8 @@ void start_voip_service(void *argv)
         switch (event->type)
         {
             case EXOSIP_REGISTRATION_SUCCESS:
+                if (quec_voip_unregister_event(voip, event) || !voip->sip_info.sip_cfg.enable ||
+                    event->rid != voip->sip_info.reg_id) break;
                 voip_log("registrered successfully\n");
                 osip_contact_t *contact;
 
@@ -1983,6 +2090,7 @@ void start_voip_service(void *argv)
                 break;
 
             case EXOSIP_REGISTRATION_FAILURE:
+                if (quec_voip_unregister_event(voip, event) || !voip->sip_info.sip_cfg.enable) break;
                 quec_voip_registration_failed(voip, event);
                 break;
             case EXOSIP_MESSAGE_NEW: {
@@ -2033,7 +2141,14 @@ void start_voip_service(void *argv)
             break;
             case EXOSIP_CALL_INVITE: {
                 int queued;
+                int code = quec_voip_invite_account_check(voip, event->request);
                 qosa_enter_critical(); ++g_net_diag.invites_rx; qosa_exit_critical();
+                if (code)
+                {
+                    eXosip_call_send_answer(context_sip, event->tid, code, NULL);
+                    voip_incoming_result(event->cid, code);
+                    break;
+                }
                 quec_event.type = QUEC_VOIP_EVENT_MEDIA_CREAT;
                 queued = quec_voip_send_call_event(voip, &quec_event, QUEC_VOIP_EVENT_CALL_INVITE);
                 if (queued)
@@ -4353,6 +4468,9 @@ void quec_voip_manage(void *argv)
                 quec_voip_registration_recover(voip, (const int *)event_msg.p_data);
                 break;
             case QUEC_VOIP_EVENT_REGIST_DONE:
+                /* STOP 等待期间排队的旧注册成功不得把本地重新标为在线。 */
+                if (!voip->sip_info.sip_cfg.enable || !voip->sip_info.sip_context ||
+                    voip->sip_info.reg_id <= 0) break;
                 qosa_enter_critical(); g_net_diag.reg_code = 200; qosa_exit_critical();
                 /*
        * Central serializer for VOIP state transitions. All asynchronous
